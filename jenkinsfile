@@ -75,7 +75,7 @@ pipeline{
         stage('Deployment to k8s'){
             steps{
                 sh '''
-                 eksctl update-kubeconfig --name mycluster --region ap-south-1
+                 aws eks update-kubeconfig --name mycluster --region ap-south-1
                  kubectl apply -f k8s/
                  kubectl get pods
                  sleep 30
