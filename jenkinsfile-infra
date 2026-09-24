@@ -1,40 +1,34 @@
-pipeline {
-    agent {
+pipeline{
+    agent{
         label 'worker'
     }
 
-    environment {
-        my_aws_cred = credentials('aws-cred')
-    }
-
-    tools {
+    tools{
         terraform 'tf'
     }
 
-    stages {
-
-        stage('Checkout'){
+    stages{
+        stage('checkout'){
             steps{
                 git 'https://github.com/Abhisharma078/student-management.git'
-                echo "Clonning is successful"
+                echo "checkout is success"
             }
         }
 
-        stage('Terraform - Init'){
-            steps {
-                sh 'terraform init -reconfigure'
+        stage('terraform init'){
+            steps{
+                sh 'terraform init'
             }
         }
-
-        stage('Terraform - validate'){
-            steps {
+        
+        stage('terraform validate'){
+            steps{
                 sh 'terraform validate'
             }
         }
-
-        stage('Terraform - Apply'){
-            steps {
-                sh 'terraform apply -auto-approve'
+        stage('terraform apply'){
+            steps{
+                sh 'terraform apply --auto-approve'
             }
         }
     }
