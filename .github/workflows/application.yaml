@@ -34,7 +34,10 @@ jobs:
         run: aws s3 cp target/*.war s3://mayur.comm/Artifacts/student.war
 
       - name: SonarQube Analysis
-        run: mvn sonar:sonar
+        run: |
+          mvn sonar:sonar \
+            -Dsonar.token: ${{ secrets.SONAR_TOKEN }}
+            -Dsonar.host.url: ${{ secrets.SONAR_HOST_URL }}
           
 
         
