@@ -11,7 +11,7 @@ terraform {
   }
 
   backend "s3" {
-    bucket       = "mayurcbz.space"
+    bucket       = "mayur.comm"
     key          = "student-management/eks/terraform.tfstate"
     region       = "us-west-2"
     use_lockfile = true
@@ -30,7 +30,7 @@ data "aws_vpc" "default" {
 # Variable for cluster name
 variable "cluster_name" {
   type    = string
-  default = "my-eks-cluster"
+  default = "eks-cluster-mayur"
 }
 
 # Fetch all subnets in the default VPC
