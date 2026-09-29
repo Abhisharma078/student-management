@@ -76,3 +76,29 @@ jobs:
           docker tag student:latest 822920903800.dkr.ecr.us-west-2.amazonaws.com/student:latest
           docker push 822920903800.dkr.ecr.us-west-2.amazonaws.com/student:latest
 
+      - name: Terraform Installation
+        uses: hashicorp/setup-terraform@v4
+        with:
+          version: latest
+
+      - name: Terraform init
+        run: terraform init
+
+      - name: Terraform Validate
+        run: terraform validate
+
+      - name: Terraform Apply 
+        run: terraform apply -auto-approve
+
+      - name: kubectl install
+        uses: azure/setup-kubectl@v4
+
+      - name: Deployment on Kubernetes
+        run: |
+          aws eks update-kubeconfig --name my-cluster-mayur --region us-west-2
+          kubectl apply -f k8s/
+          sleep 30
+          kubectl get pods
+          kubectl get svc -o wide
+          
+
