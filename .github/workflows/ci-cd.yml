@@ -12,5 +12,8 @@ jobs:
     steps:
       - name: Checkout Code
         uses: actions/checkout@v7
+
+      - name: Build Stage
+        run: mvn clean package
   
 
