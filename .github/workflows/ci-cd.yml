@@ -22,5 +22,8 @@ jobs:
 
       - name: Build Stage
         run: mvn clean package
+
+      - name: Push Artifacts to S3
+        run: aws s3 cp target/*.war s3://mayur.comm/Artifacts/student.war
   
 
